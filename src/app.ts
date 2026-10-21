@@ -12,9 +12,14 @@ export const app = express();
 app.use(createHelmetMiddleware());
 
 // CORS configuration
+
+const allowedOrigins = env.CLIENT_ORIGIN.split(",").map((origin) =>
+  origin.trim().replace(/\/+$/, ""),
+);
+
 app.use(
   cors({
-    origin: env.CLIENT_ORIGIN,
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Guest-Id"],
   }),
