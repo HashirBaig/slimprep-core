@@ -1,15 +1,15 @@
 import express from "express";
 import cors from "cors";
-import * as helmetModule from "helmet";
 
 import { env } from "./config/env.js";
 import routes from "./modules/routes.js";
 import { errorHandler } from "./lib/http.js";
+import { createHelmetMiddleware } from "./lib/helmet.js";
 
 export const app = express();
 
 // Security middleware
-app.use(helmetModule.default());
+app.use(createHelmetMiddleware());
 
 // CORS configuration
 app.use(
