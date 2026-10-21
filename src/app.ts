@@ -20,17 +20,14 @@ app.use(
 
 app.use(express.json({ limit: "200kb" }));
 
-// API routes
 app.use("/api", routes);
 
-// 404 handler
 app.use((_req, res) => {
   res.status(404).json({
     error: "Route not found",
   });
 });
 
-// Global error handler
 app.use(errorHandler);
 
 export default app;
